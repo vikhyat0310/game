@@ -3,9 +3,9 @@
 $server ="localhost";
 $user ="root";
 $password ="";
-$db="database";
+$db="oss";
 
-$con =mysqli_connect($server,$user,$password,$db);
+$con = mysqli_connect($server,$user,$password,$db);
 
 if(!($con)){
     echo "connection unsuccesful";

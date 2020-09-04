@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!Doctype html>
 <html lang="en">
   <head>
@@ -21,17 +17,18 @@ session_start();
 <h3>Login Here:</h3>
 <hr>
 
-<form action="" method="POST">
+<form action="login.php" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
-    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+    <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
   </div>
   
-  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" name="loginsubmit" class="btn btn-primary">Submit</button>
+  <a href="signup.php">Register Now</a>
 </form>
 
 </div>
@@ -49,39 +46,27 @@ session_start();
 
 
 <?php
-include 'config.php';
+    include 'config.php';
 
-if(isset($_SESSION['name']))
-{
-    header("location: portfolio/index.html");
-    exit;
-}
+    if(isset($_POST['loginsubmit']))
+    {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+      $password = md5($password);
 
-if(isset($_POST['submit'])){
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-
-  $email_search ="SELECT * FROM table WHERE email='$email'";
-  $query = mysqli_query($con,$email_search);
-
-  $email_count =mysqli_num_rows($query);
-  if(email_count)
-  {
-  $email_pass= mysqli_fetch_assoc($query);
-  $db_pass = $email_pass['password'];
-  $passdecode =password_verify($password, $db_pass);
-  if ($pass_decode)
-  {
-  echo "login successful";
-  header('location:portfolio/index.html');
-}
-  else{
-  echo "password incorrect";
-}
-}
-else
-echo "invalid email";
-}
+      $query = "SELECT * FROM userinfo WHERE email='$email' AND password='$password'";
+      $results = mysqli_query($con, $query);
+      if(mysqli_num_rows($results)>0)
+      {
+          session_start();
+          $_SESSION['email'] = $email;
+          header("location: index.php");
+      }
+      else
+      { 
+          echo "Username or Password is Incorrect";
+      }
+    }
 
 
 ?>
