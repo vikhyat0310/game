@@ -14,7 +14,7 @@ body{
 
 
 .container{
-    background-image: url(https://cdn.pixabay.com/photo/2019/08/14/20/54/mobile-video-game-vector-background-4406706__340.png);
+    background-image: url(https://storage.needpix.com/rsynced_images/video-game-background-1405076_1280.png);
    /* background-repeat: no-repeat;*/
     background-size:100vw 100vh;
     width:100%;
@@ -26,7 +26,7 @@ body{
     width:88px;
     height:119px;
     position: absolute;
-    bottom:15px;
+    bottom:50px;
     left: 10vw;
 }
 .zom{
@@ -35,7 +35,7 @@ body{
     background-image: url(image/zom.png);
     background-size: cover;
     position: absolute;
-    bottom: 15px;
+    bottom: 48px;
     left: 70vw;
 
 }
@@ -46,10 +46,34 @@ body{
 .obstacleanim{
     animation: obstacleanim 1.5s ease-in infinite;
 }
+.rain{
+    height:100vh;
+     background:url(image/rain.png);
+     background:cover;
+     animation: rain .3s linear infinite;
+     font-weight: 800;
+     
+
+    
+ }
+ 
+ @keyframes rain
+{
+    0%{
+        background-position:10% 10%;
+    }
+    100%{
+        background-position:20% 70%;
+    }
+}
+
 .welcome{
-    color: white;
-    font-size: 20px;
+    color:white;
+    font-size: 40px;
     padding: 25px;
+    text-align:center;
+    margin-left:-80px;
+    
 }
 .gameOver{
     visibility: hidden;
@@ -57,22 +81,37 @@ body{
     font-size: 50px;
     color: white;
     font-family: cursive;
-    margin-top: -50px;
+    margin-top: 20px;
 }
 
-.scorecount{
-    color: white;
+#scoreid{
+    color:white;
     float: right;
     font-style: bold;
-    font-size: 20px;
+    font-size: 25px;
     padding: 25px;
-    margin-top: -90px;
+    margin-top: -200px;
+    margin-right:20px;
+    border: 4px solid white;
+    width:160px;
+    padding:15px;
     
 }
+ .container button{
+    font-size:20px;
+    padding:3px;
+    background:black;
+    
+    
+}
+ .container  button a{
+ color:white;
+
+} 
 
 @keyframes dino {
     0%{
-          bottom: 0;
+          bottom: 50px;
       }
     30%{
         bottom: 200px;
@@ -81,7 +120,7 @@ body{
         bottom: 200px;
     }
     100%{
-        bottom: 0;
+        bottom: 50px;
     }
 }
 @keyframes obstacleanim{

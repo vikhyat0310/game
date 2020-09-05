@@ -1,9 +1,12 @@
-var score=0;
+ score=0;
+ cross=true;
 
 audio = new Audio('Kalimba.mp3');
+audiogo = new Audio('gameover.mp3');
 setTimeout(()=>{
-	audio.play()
+	audio.play();
 },1000);
+
 
 
 
@@ -40,19 +43,36 @@ setInterval(() => {
     offsetX = Math.abs(dx - ox);
     offsetY = Math.abs(dy - oy);
 
-    if (offsetX < 43 && offsetY < 50) {
+    if (offsetX < 73 && offsetY < 50) {
         gameOver.style.visibility = 'visible';
         zom.classList.remove('obstacleanim');
+        audiogo.play();
+        setTimeout(() => {
+            audio.pause();
+            audiogo.pause();
+             
+        }, 1000);
+        
      
     }    
-	else{
+	else if( offsetX<144 && cross) {
 		score+=1;
-		updateScore(score);
-	}
-}, 50);
+        updateScore(score);
+        cross=false;
+        setTimeout(() => {
+         cross=true;
+        },50);
+
+    }
+        
+	
+}, 100);
 
 
 	function updateScore(score){
-	//document.getElementById('scoreid').innerHTML= "Your Score="+score;
-	}
-
+        scoreid.innerHTML="Your Score :"+score
+    }
+    /*
+        document.getElementById('scoreid').innerHTML= "Your Score:"+score;
+	
+*/
